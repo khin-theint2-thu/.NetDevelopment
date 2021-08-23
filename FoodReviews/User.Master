@@ -1,0 +1,167 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.Master.cs" Inherits="FoodReviews.Site4" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Restaurant Guide</title>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    
+    <!-- Site Metas -->
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    
+    <link href="RestaurantGuide/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/colors.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/custom.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/style.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/navbar.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/jquery-2.2.3.min.js")%>"></script>
+
+    <script>
+
+        function LogOut() {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var allCookies = document.cookie.trim().split(';');
+            document.cookie = allCookies + "=;expires=" + date.toGMTString() + ";path=/";
+            window.location.href = "Index.aspx";
+        }
+
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header>
+		<!-- navigation -->
+		<div class="main-top">
+			<nav class="navbar navbar-expand-lg navbar-light fixed-navi">
+				<div class="container">
+					<!-- logo -->
+					<a class="navbar-brand font-weight-bold" href="Index.aspx">
+						<img src="Images/icon/map-4-24.png" style="height:25px;"/><span class="page-logo">Restaurant<span class="font-weight-super-bold">g</span>uide</span>
+					</a>
+					<!-- //logo -->
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-lg-auto">
+							<li class="nav-item active mx-xl-5  my-lg-0 mt-3">
+								<a class="nav-link" href="Index.aspx">Home
+									<span class="sr-only">(current)</span>
+								</a>
+							</li>
+							<li class="nav-item mx-xl-5  my-lg-0 mt-3">
+								<a class="nav-link" href="Restaurants.aspx">Restaurants</a>
+							</li>
+							<li class="nav-item mx-xl-5  my-lg-0 mt-3">
+								<a class="nav-link" href="Posts.aspx">Posts</a>
+							</li>
+                               							
+                            <%if (UserInfo[0] != null)
+                                {%>
+                                    <%if(UserInfo[3] != "User" ){%> 
+                                        <li class="nav-item  my-lg-0 mx-0 ">
+								            <a href="Dashboard.aspx" class="nav-link">Dashboard</a>
+							            </li>
+                                    <%}%> 
+							    <li class="nav-item  my-lg-0 mx-0 ">
+								    <a href="UserProfile.aspx" class="nav-link" style="padding: 4px 5px!important;"><div class="userimagediv"><img src="Images/UserImages/<%=UserInfo[2] %>" class="userprofileimage" /></div><div class="text-ellipsis"><%=UserInfo[1] %></div></a>
+							    </li>                         
+							    <li class="nav-item ml-xl-5  my-lg-0 mx-0 ">
+								    <a onclick="LogOut()" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Log Out</a>
+							    </li>                        
+                                <%}
+                                else
+                                {%>
+							    <li class="nav-item ml-xl-5  my-lg-0 mx-0 ">
+								    <a href="LogIn.aspx" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Log In</a>
+							    </li>
+                            <%} %>
+						</ul>
+					</div>
+				</div>
+			</nav>
+            <%--<div class="container">
+                <div class="banner-text">
+                    Restaurant Guide - find best restaurants  in Yangon, Myanmar
+                </div>
+            </div>--%>
+		</div>
+		<!-- //navigation -->
+	</header>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <div class="browseRestaurant">
+            <div class="container">
+                <div class="row"><h5>Restaurants in Yangon</h5></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Seafood">Seafood</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Fast food">Fast food</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Street Food">Street Food</a></span>
+                    </div>
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Coffee house">Coffee house</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Tea house">Tea house</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Cafe">Cafe</a></span>
+                    </div>
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Buffet">Buffet</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Hot Pot">Hot Pot</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Family Style">Family Style</a></span>
+                    </div>
+                </div>
+                <div class="row"><h5>Food & Drink in Yangon</h5></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Barbecue">Barbecue</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Bread">Bread</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Bubble Tea">Bubble Tea</a></span>
+                    </div>
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Pizza">Pizza</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Mala Xiang Guo">Mala Xiang Guo</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Sushi">Sushi</a></span>
+                    </div>
+                    <div class="col-md-4">
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Fried Chicken">Fried Chicken</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Coffee & Tea">Coffee & Tea</a></span>
+                        <span><i class="fa fa-caret-right"></i><a href="Restaurants?Filter=Kyay-Oh">Kyay-Oh</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <footer class="footer">
+            <div class="container">                
+                   <div class="copyright">Copyright © 2021 RestaurantGuide.</div>
+            </div><!-- end container -->
+        </footer><!-- end footer -->
+
+    </form>
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/bootstrap.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/custom.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/jquery.magnific-popup.js")%>"></script>
+</body>
+</html>

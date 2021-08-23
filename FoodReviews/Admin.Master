@@ -1,0 +1,117 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="FoodReviews.Admin" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Restaurant Guide</title>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    
+    <!-- Site Metas -->
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    
+    <link href="RestaurantGuide/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/colors.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/custom.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/style.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/css/navbar.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/DataTable/dataTables.bootstrap4.css" rel="stylesheet" />
+
+    <link href="RestaurantGuide/DataTable/shCore.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/jquery-2.2.3.min.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/DataTable/jquery.dataTables.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/DataTable/dataTables.bootstrap4.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/DataTable/shCore.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/DataTable/demo.js")%>"></script>
+
+    <script>
+        function LogOut() {
+            window.location.href = "Index.aspx";
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server"> 
+       <div class="contentbody">       
+        <header>
+		    <!-- navigation -->
+		    <div class="main-top" style="background: #ab0012;">
+			    <nav class="navbar navbar-expand-lg navbar-light fixed-navi">
+				    <div class="container">
+					    <!-- logo -->
+					    <a class="navbar-brand font-weight-bold" href="Index.aspx">
+						    <img src="Images/icon/map-4-24.png"/><span class="page-logo">Restaurant<span class="font-weight-super-bold">g</span>uide</span>
+					    </a>
+					    <!-- //logo -->
+					    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+					    </button>
+					    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+						    <ul class="navbar-nav ml-lg-auto">
+							
+                            <%if (UserInfo[0] != null)
+                                {%>
+                                    <%if(UserInfo[3] != "User" ){%> 
+                                        <li class="nav-item  my-lg-0 mx-0 ">
+								            <a href="Dashboard.aspx" class="nav-link">Dashboard</a>
+							            </li>
+                                    <%}%> 
+							    <li class="nav-item  my-lg-0 mx-0 ">
+								    <a href="UserProfile.aspx" class="nav-link" style="padding: 4px 5px!important;"><div class="userimagediv"><img src="Images/UserImages/<%=UserInfo[2] %>" class="userprofileimage" /></div><div class="text-ellipsis"><%=UserInfo[1] %></div></a>
+							    </li>                         
+							    <li class="nav-item ml-xl-5  my-lg-0 mx-0 ">
+								    <a onclick="LogOut()" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Log Out</a>
+							    </li>                        
+                                <%}
+                                else
+                                {%>
+							    <li class="nav-item ml-xl-5  my-lg-0 mx-0 ">
+								    <a href="LogIn.aspx" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Log In</a>
+							    </li>
+                            <%} %>
+						</ul>
+					    </div>
+				    </div>
+			    </nav>
+		    </div>
+		    <!-- //navigation -->
+	    </header>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <footer class="footer">
+            <div class="container">                
+               <div class="copyright">Copyright © 2021 RestaurantGuide.</div>
+            </div>
+        </footer><!-- end footer -->   
+       </div>          
+    </form>
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/bootstrap.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/custom.js")%>"></script>
+
+    <script type="text/javascript" src="<%=ResolveUrl("~/RestaurantGuide/js/jquery.magnific-popup.js")%>"></script>
+</body>
+</html>
